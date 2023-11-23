@@ -16,14 +16,6 @@ struct VideoView: NSViewRepresentable {
         let playerView = AVPlayerView()
         playerView.player = avPlayer
         playerView.controlsStyle = .none
-        playerView.allowsMagnification = false
-        playerView.allowsVideoFrameAnalysis = false
-        playerView.allowsPictureInPicturePlayback = false
-        playerView.allowedTouchTypes = []
-        playerView.gestureRecognizers = []
-        playerView.actionPopUpButtonMenu = .none
-        playerView.window?.disableCursorRects()
-        playerView.window?.disableKeyEquivalentForDefaultButtonCell()
         return playerView
     }
 

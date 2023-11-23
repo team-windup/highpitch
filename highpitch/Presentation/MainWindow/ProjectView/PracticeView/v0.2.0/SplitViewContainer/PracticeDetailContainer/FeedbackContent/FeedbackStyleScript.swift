@@ -33,9 +33,6 @@ struct FeedbackStyleScript: View {
                         scrollViewProxy.scrollTo(viewStore.nowSentence, anchor: .center)
                     }
                 }
-                .onChange(of: viewStore.mediaManager.currentTime) { _, newValue in
-                    updateSelectedIndex(currentTime: newValue, sentences: viewStore.getSortedSentences())
-                }
         }
         .onAppear {
             // MARK: - Add MockData
@@ -496,17 +493,4 @@ extension FeedbackStyleScript {
     }
     .frame(minWidth: 440, maxWidth: 440,  minHeight: 600)
     .padding(24)
-}
-extension FeedbackStyleScript {
-    private func updateSelectedIndex(currentTime: TimeInterval,sentences: [SentenceModel]) {
-        let currentSentence = sentences.first { sentence in
-            if sentence.startAt <= Int(currentTime*1000) ,
-               sentence.endAt > Int(currentTime*1000) {
-                return true
-            }
-            return false
-        }
-        viewStore.nowSentence = currentSentence?.index ?? 0
-        
-        }
 }
